@@ -11,11 +11,13 @@ public class CadastroDespesaUseCase {
     @Autowired
     private DespesaRepository despesaRepository;
 
-    public void execute(Despesa despesa){
-        System.out.println("Antes de salvar");
-        System.out.println(despesa);
-        System.out.println("Depois");
-        despesa = despesaRepository.save(despesa);
-        System.out.println(despesa);
+    public Despesa execute(Despesa despesa) {
+        if (despesa.getCategoria() == null || despesa.getData() == null
+                || despesa.getDescricao() == null || despesa.getEmail() == null) {
+            throw new IllegalArgumentException("Preencha todos os campos");
+        } else {
+            despesa = despesaRepository.save(despesa);
+            return despesa;
+        }
     }
 }

@@ -1,10 +1,8 @@
 package com.felipepsaugusto.gestaocustos.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-
+import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -12,17 +10,27 @@ import java.util.UUID;
 @Table(name = "despesa")
 public class Despesa {
 
+    //Columns
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name = "descricao")
+
+    @Column(nullable = false)
     private String descricao;
+    @Column(nullable = false)
     private LocalDate data;
+    @Column(nullable = false)
     private BigDecimal valor;
-    @CreatedDate
+    @CreationTimestamp
+    @Column(nullable = false)
     private LocalDate data_criacao;
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String categoria;
+    @Column(nullable = false)
+    private String email;
+
+    //()
 
     public String getCategoria() {
         return categoria;
@@ -31,8 +39,6 @@ public class Despesa {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    private String email;
 
     public String getEmail() {
         return email;
