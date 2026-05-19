@@ -14,10 +14,11 @@ public class CadastroDespesaUseCase {
     public Despesa execute(Despesa despesa) {
         if (despesa.getCategoria() == null || despesa.getData() == null
                 || despesa.getDescricao() == null || despesa.getEmail() == null) {
-            throw new IllegalArgumentException("Preencha todos os campos");
+            throw new IllegalArgumentException("É necessario preencher todos os campos");
         } else {
             despesa = despesaRepository.save(despesa);
             return despesa;
         }
     }
+
 }
